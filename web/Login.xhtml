@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Iniciar sesión</title>
+        <h:outputStylesheet name="/css/bootstrap.min.css" />
+        <h:outputStylesheet name="/css/styles.css" />
+    </h:head>
+        
+    <h:body>
+        
+        
+        <h:form id="form" class="form-horizontal">
+            
+            <div class="form-group">
+                
+                <div class="col-sm-4"></div>
+                
+                <div class="col-sm-4">
+                    <h2 style="text-align: center">Ingrese los datos de inicio de sesión</h2>
+                </div>
+                
+            </div>
+            
+            
+            <hr/>
+            
+            
+            <div class="form-group">
+                
+                <h:outputLabel for="email" class="control-label col-sm-4">Correo electronico</h:outputLabel>
+                
+                <div class="col-sm-4">
+                    
+                    <h:inputText id="email-id" value="#{user.email}" class="form-control" validatorMessage="El correo electronico es requerido">
+                        <f:validateRequired/>
+                    </h:inputText>
+                    
+                </div>
+                
+            </div>
+            
+            
+            
+            <div class="form-group">
+                
+                <h:outputLabel for="password" class="control-label col-sm-4">Contraseña</h:outputLabel>
+                
+                <div class="col-sm-4">
+                    
+                    <h:inputSecret id="password-id" value="#{user.password}" class="form-control" validatorMessage="contraseña es requerida">
+                        <f:validateRequired/>
+                        
+                    </h:inputSecret>
+                </div>
+                
+            </div>
+
+            
+            
+            <h:message for="userId" />
+            
+            <div class="form-group">
+                
+                <div class="col-sm-4"></div>
+                
+                <div class="col-sm-4">
+                    
+                    <div class="col-sm-4">
+                        
+                        <h:commandButton value="Iniciar sesión" action="#{user.login(user.email,user.password)}" class="btn btn-primary" style="width: 120px;"></h:commandButton>
+                        
+                    </div>
+                    
+                    <center>
+                        <h:commandButton action="index.xhtml?faces-redirect=true" value="Regresar" immediate="true" class="btn btn-success"></h:commandButton>
+                    </center>
+
+                    <div class="col-sm-1">
+                    </div>
+
+                </div>
+                
+            </div>
+            
+        </h:form>
+        
+        <center>
+            <h:outputText value="#{user.output}" style="font-size:30px;color: red" />
+        </center>
+
+    </h:body>
+
+    </html>

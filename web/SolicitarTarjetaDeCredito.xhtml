@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Solicitud de clientes</title>
+        <h:outputStylesheet name="/css/bootstrap.min.css" />
+        <h:outputStylesheet name="/css/styles.css" />
+    </h:head>
+        
+    <h:body>
+
+        <h:form id="form" class="form-horizontal">
+            
+            <div class="form-group">
+                <div class="col-sm-2"></div>
+                <h2 style="text-align: center" class="col-sm-4">Solicitar tarjeta de credito</h2>
+            </div>
+            
+            <hr/>
+            
+            <div class="form-group">
+                
+                <h:outputLabel for="cc" class="control-label col-sm-2">Cedula</h:outputLabel>
+                
+                <div class="col-sm-4">
+                    
+                    <h:inputText id="cc" value="#{user.cc}" class="form-control" validatorMessage="Ingresa una cedula valida">
+                        <f:validateLongRange minimum="5000" />
+                        <f:validateRequired />
+                    </h:inputText>
+                    
+                </div>
+                
+            </div>
+
+            
+            <div class="form-group">
+                
+                <h:outputLabel for="email" class="control-label col-sm-2">Correo electronico</h:outputLabel>
+                
+                <div class="col-sm-4">
+                    <h:inputText id="email" value="#{user.email}" class="form-control" readonly="true" />
+                </div>
+                
+            </div>
+            
+            
+            <div class="form-group">
+                
+                <h:outputLabel for="username" class="control-label col-sm-2">Nombre de usuario</h:outputLabel>
+                
+                <div class="col-sm-4">
+                    <h:inputText id="name" value="#{user.name}" class="form-control" readonly="true" />
+                </div>
+                
+            </div>
+            
+            
+            <div class="form-group">
+                
+                <h:outputLabel for="dates" class="control-label col-sm-2">Fecha de nacimiento</h:outputLabel>
+                
+                <div class="col-sm-4">
+                    <h:inputText id="dates" value="#{user.dates}" class="form-control" validatorMessage="Fecha de nacimiento es requerido">
+                        <f:validateRequired />
+                    </h:inputText>
+                </div>
+                
+            </div>
+            
+            
+            <div class="form-group">
+                
+                <h:outputLabel for="gender" class="control-label col-sm-6">Medio de solicitud de la tarjeta de credito</h:outputLabel>
+                
+                <div class="col-sm-4">
+                    
+                    <h:selectOneRadio value="#{user.origentramite}" validatorMessage="Medio de solicitud es requerido.">
+
+                        <f:selectItem itemValue="V" itemLabel="Virtualmente" />
+                        <br></br>
+                        <f:selectItem itemValue="T" itemLabel="Telefonicamente" />
+                        <br></br>
+                        <f:selectItem itemValue="O" itemLabel="En las oficinas" />
+                        <f:validateRequired/>
+
+                    </h:selectOneRadio>
+                </div>
+                
+            </div>
+            
+            <center>
+                <h:commandButton value="Solicitar" action="#{user.solicitarTarjetaDeCredito()}" class="btn btn-primary" style="width: 80px;"></h:commandButton>
+            </center>
+            
+            <br/>
+            
+            <center>
+                <h:commandButton action="/LSolicitudesCliente.xhtml?faces-redirect=true" value="Regresar" immediate="true" class="btn btn-success"></h:commandButton>
+            </center>
+            
+        </h:form>
+        
+    </h:body>
+
+    </html>

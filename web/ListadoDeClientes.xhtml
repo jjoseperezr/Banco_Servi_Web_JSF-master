@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <title>Listado de usuarios</title>
+    <h:head>
+
+        <h:outputStylesheet name="/css/bootstrap.min.css" />
+        <h:outputStylesheet name="/css/styles.css" />
+
+    </h:head>
+
+    <h:body>
+
+
+        <h:form>
+
+            <center>
+                <h2><h:outputText value="Usuarios Registrados"/></h2>
+            </center>
+
+            <h:dataTable binding="#{table}" value="#{user.ListaDeUsuarios()}" var="u" class="table table-striped table-hover table-bordered ">
+
+                <h:column>
+                    <f:facet name="header">IDENTIFICACION</f:facet>
+                    <h:outputText value="#{table.rowIndex + 1}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">NOMBRE DE USUARIO</f:facet>
+                    <h:outputText value="#{u.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">CORREO ELECTRONICO</f:facet>
+                    <h:outputText value="#{u.email}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">CONTRASEÑA</f:facet>
+                    <h:outputText value="#{u.password}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">GENERO</f:facet>
+                    <h:outputText value="#{user.getGenderName(u.gender)}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">DIRECCION</f:facet>
+                    <h:outputText value="#{u.address}" />
+                </h:column>
+
+                <h:column>
+                    <center>
+                        <f:facet name="header">ACTUALIZAR</f:facet>
+                        <h:commandButton action="#{user.edit(u.id)}" value="Actualizar" class="btn btn-info">
+                        </h:commandButton>
+                    </center>
+                </h:column>
+
+                <h:column>
+                    <center>
+                        <f:facet name="header">ELIMINAR</f:facet>
+                        <h:commandButton action="#{user.delete(u.id)}" value="Eliminar" class="btn btn-danger">
+                        </h:commandButton>
+                    </center>
+                </h:column>
+
+            </h:dataTable>
+
+            <center>
+                <h:commandButton action="Administracion.xhtml" value="Regresar" class="btn btn-success"></h:commandButton>
+            </center>
+
+        </h:form>
+
+    </h:body>
+
+</html>

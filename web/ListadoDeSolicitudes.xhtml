@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <title>Listado de usuarios</title>
+    <h:head>
+
+        <h:outputStylesheet name="/css/bootstrap.min.css" />
+        <h:outputStylesheet name="/css/styles.css" />
+    </h:head>
+
+    <h:body>
+
+        <h:form>
+
+            <center>
+                <h2><h:outputText value="Listado de solicitudes"/></h2>
+            </center>
+
+            <h:dataTable binding="#{table}" value="#{user.listadoDeSolicitudes()}" var="u" class="table table-striped table-hover table-bordered ">
+
+                <h:column>
+                    <f:facet name="header">IDENTIFICACION</f:facet>
+                    <h:outputText value="#{u.cc}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">NOMBRE DE USUARIO</f:facet>
+                    <h:outputText value="#{u.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">CORREO ELECTRONICO</f:facet>
+                    <h:outputText value="#{u.email}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">FECHA DE NACIMIENTO</f:facet>
+                    <h:outputText value="#{u.dates}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">ORIGEN DE LA SOLICITUD</f:facet>
+                    <h:outputText value="#{user.getorigendeltramite(u.origentramite)}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">ESTADO DE LA SOLICITUD</f:facet>
+                    <h:outputText value="#{u.estado}" />
+                </h:column>
+
+                <h:column>
+                    <center>
+                        <f:facet name="header">ACTUALIZAR</f:facet>
+                        <h:commandButton action="#{user.editatsolicitud(u.cc)}" value="Actualizar" class="btn btn-info">
+                        </h:commandButton>
+                    </center>
+                </h:column>
+
+                <h:column>
+                    <center>
+                        <f:facet name="header">ELIMINAR</f:facet>
+                        <h:commandButton action="#{user.deletesolicitud(u.cc)}" value="Eliminar" class="btn btn-danger">
+                        </h:commandButton>
+                    </center>
+                </h:column>
+
+            </h:dataTable>
+
+            <center>
+                <h:commandButton action="Administracion.xhtml" value="Regresar" class="btn btn-success"></h:commandButton>
+            </center>
+
+        </h:form>
+    </h:body>
+
+</html>
